@@ -1,0 +1,58 @@
+{% extends 'base_welcome.html' %}
+{% block base_welcome_content %}
+{% load static %}
+
+<div class="container-fluid">
+    <br>
+    <div class="row"> 
+        <div class="col-12 col-md-4"></div>
+        <div class="col-12 col-md-4">
+            <div class="card text-dark mb-3">
+                <h5 class="card-header text-primary py-3 pt-4">Enter OTP</h5>
+                    <div class="card-body">
+
+                    {% include 'messages.html' %}
+                    <form class="needs-validation" action="{% url 'forgot_pwd_otp_decision_conn' %}" method="POST" novalidate>{% comment %}action="{% url 'forgot_one' %}" {% endcomment %}
+                        {% csrf_token %}
+                        <br>
+                        <div class="text-center">
+                            <h6>OTP Send on <strong>{{ request.session.mobile }}</strong></h6>
+                            <small class="text-primary">OTP valid for 5 minutes</small>
+                        </div>
+                        <div class="col-12  p-5">
+                            <input type="text" class="form-control text-center border-primary" name="forgot_otp" placeholder="Enter your otp" minlength="4" maxlength="8" autocomplete="false" required>
+                            <div class="invalid-feedback">
+                                Enter valid 4-digit or 6-digit otp.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="n_pass" class="form-label">New Password for (Login & Wallet)</label>
+                            <input type="text" class="form-control" id="n_pass" name="new_pass" placeholder="Enter new password (Login & Wallet)" minlength="4" maxlength="8" required>
+                            <div class="invalid-feedback">
+                              Please enter new password between 4 to 8 characters.
+                            </div>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <label for="c_pass" class="form-label">Conform Password</label>
+                            <input type="text" class="form-control" id="c_pass" name="conf_pass" placeholder="Enter conform password (Login & Wallet)" minlength="4" maxlength="8" required>
+                            <div class="invalid-feedback">
+                              Please enter conform password between 4 to 8 characters.
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="d-flex justify-content-around">
+                            <a href="{% url 'welcome_dashboard_conn' %}" type="button" class="btn btn-outline-secondary px-5">Cancel</a>
+                            <button type="submit" class="btn btn-success px-5" >Done</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4"></div>
+    </div>
+
+</div>
+
+{% endblock %}

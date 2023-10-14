@@ -1,0 +1,81 @@
+{% comment %} <div class="p-3 p-md-5 text-center " style="background: #6c9295"> 
+    <h1 class="text-white w-bold">I N D I A N &nbsp;&nbsp;&nbsp;&nbsp; R A I L W A Y</h1>
+</div>  {% endcomment %}
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 text-white m-0" style="background: #ADB5BD;">
+   
+    <div class="col p-4 ">
+        {% for foot_side in c_footer_side %}
+            {% if foot_side.id == 1 %}
+                <h6 class="fs-5 text-center pb-0">{{ foot_side.title }}</h6>
+                <hr class="pb-0">
+            {% else %}
+                <h6>{{ foot_side.title }}</h6>
+            {% endif %}
+            {% comment %}<h6>Address : Sector-2 Noida, Delhi INDIA</h6>
+            <h6>Facebook</h6>
+            <h6>Linkedin</h6>
+            <h6>Telegram</h6>
+            <h6>Youtube</h6>
+            <h6>Logo 8448604268</h6>
+            <h6>Logo info.modernvision@gmail.com</h6>{% endcomment %}
+        {% endfor %}
+        <h6 class="fs-5 text-center">Address</h6>
+        <hr class="p-0">
+        <h6 class="ms-md-3">Udyog Vihar</h6> 
+        <h6 class="ms-md-3">Phase - IV</h6> 
+        <h6 class="ms-md-3">Gurugram</h6> 
+        <h6 class="ms-md-3">Haryana</h6> 
+        <h6 class="ms-md-3">Mob:- 8448604268</h6> 
+    </div>
+    <div class="col p-4 text-center">
+        {% for foot_center in c_footer_center %}
+            {% if foot_center.id == 9 %}
+                <h6 class="fs-5 text-center pb-0">{{ foot_center.title }}</h6>
+                <hr class="pb-0">
+            {% else %}
+                <h6>{{ foot_center.title }}</h6>
+            {% endif %}
+        {% endfor %}
+        <h6 class="fs-5 ">About-Us</h6>
+        <hr class="p-0">
+        <h6>We are works in electronics appliances</h6>  
+    </div>
+    <div class="col-md-12 p-4">
+        <h6 class="fs-5 text-center">Frequently Contact</h6>
+        <hr class="p-0">
+        <div class="card bg-transparent border-white">
+            <form class="row p-3 needs-validation" action="{% url 'freq_contact_conn' %}" method="POST" novalidate>
+            {% csrf_token %}
+                <div class="col-6 mb-3">
+                    <input type="text" class="form-control" name="f_name" placeholder="Name" minlength="2" maxlength="30" required>
+                    <div class="invalid-feedback">
+                        <strong>Enter Name.</strong>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <input type="tel" class="form-control" name="f_mobile" placeholder="Mobile No" maxlength="10" pattern="[6789][0-9]{9}" required>
+                    <div class="invalid-feedback">
+                        <strong>Enter 10-digit mobile no.</strong>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <input type="email" class="form-control" name="f_email" placeholder="Email">
+                </div>
+
+                <div class="col-9">
+                  <textarea class="form-control" placeholder="Leave a message here" name="f_message" rows="2" minlength="4" maxlength="200" required></textarea>
+                    <div class="invalid-feedback">
+                        <strong>Write a message to company</strong>
+                    </div>
+                </div>
+                <div class="col-2 ps-0">
+                    <br>
+                    <button class="btn btn-warning px-md-4" type="submit"> Send </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,46 @@
+{% if messages %}
+    <div class="p-3 bg-white" style="border-radius: 0px 0px 20px 20px">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ message | safe }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% comment %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+try:
+    from django.contrib.messages import constants as messages
+    MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
+except Exception as e:
+    pass
+
+
+def home(request):
+    data = dict()
+    messages.success(request, "Success: This is the sample success Flash message.", extra_tags=)
+
+    messages.success(request, "Success: This is the sample success Flash message.")
+    messages.error(request, "Error: This is the sample error Flash message.")
+    messages.info(request, "Info: This is the sample info Flash message.")
+    messages.warning(request, "Warning: This is the sample warning Flash message.")
+    return render(request, 'hw/home.html', data)
+
+
+{% endcomment %}

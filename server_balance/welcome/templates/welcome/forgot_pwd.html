@@ -1,0 +1,48 @@
+{% extends 'base_welcome.html' %}
+{% block base_welcome_content %}
+{% load static %}
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card w-100 h-100">
+                <h5 class="card-header text-primary py-3 pt-4">Forgot Password</h5>
+                {% include 'messages.html' %}
+
+              <div class="card-body">
+                <form class="row g-3 p-2 needs-validation" method="POST" novalidate>
+                    {% csrf_token %}
+
+                      <div class="col-12">
+                        <label for="id_login_old" class="form-label">Registered Mob No</label>
+                        <input type="tel" class="form-control" id="id_login_old" name="no_mob" placeholder="Enter mobile number" minlength="10" maxlength="10" pattern="[6789][0-9]{9}" required>
+                        <div class="invalid-feedback">
+                          Please enter registered 10-digit mobile no.
+                        </div>
+                      </div>
+
+                      <div class="col-12 pt-5">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                          <label class="form-check-label" for="invalidCheck">
+                            Agree to terms and conditions <a href="#" class="text-decoration-none" > read ...</a>
+                          </label>
+                          <div class="invalid-feedback">
+                            You must agree before submitting.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 text-center ">
+                        <button class="btn btn-primary btn-block" type="submit" value="save">Get OTP</button>
+                      </div>
+                </form>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div> 
+    </div>
+</div>
+
+{% endblock %}

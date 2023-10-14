@@ -1,0 +1,103 @@
+{% extends 'base_welcome.html' %}
+{% block base_welcome_content %}
+{% load static %}
+
+<div class="container-fluid">
+    <br>
+    <!-- Preloader Start -->
+    <div class="se-pre-con"></div>
+    <!-- Preloader Ends -->
+
+    <!-- <div class="container py-4">
+        <img src="{% static 'img/contact.png' %}" class="img-fluid" alt="..." style="height: 300px;">
+    </div> -->
+    <div class="container pt-4">
+        <div class="row row-cols-1 row-cols-lg-3 row-cols-my-3 g-3 g-lg-5 text-center justify-content-between">
+            <div class="col">
+                <div class="card h-100 bg-white p-2 p-lg-3 shadow"> 
+                    <div class="card-body">
+                        <span><i class="bi bi-telephone-outbound-fill" style="font-size: 60px; color: #117864;"></i></span>
+                        <h5 class="card-title">CALL US</h5>
+                        <h6 class="card-text">+91 844860xxxx</h6> 
+                    </div> 
+                </div> 
+            </div>
+            <div class="col">
+                <div class="card h-100 bg-white p-2 p-lg-3 shadow"> 
+                    <div class="card-body">
+                        <span><i class="bi bi-geo-alt-fill" style="font-size: 60px; color: #117864;"></i></span>
+                        <h5 class="card-title">ADDRESS</h5>
+                        <h6 class="card-text">Noida, UP</h6> 
+                    </div> 
+                </div> 
+            </div>
+            <div class="col">
+                <div class="card h-100 bg-white p-2 p-lg-3 shadow"> 
+                    <div class="card-body">
+                        <span><i class="bi bi-envelope-fill" style="font-size: 60px; color: #117864;"></i></span>
+                        <h5 class="card-title">EMAIL US</h5>
+                        <h6 class="card-text">prabhat.contact@gmail.com</h6>  
+                    </div> 
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <div class="seperator col-md-12">
+        <span class="border"></span>
+    </div>
+
+    <!-- Start Contact Info -->
+    <div class="container py-4">
+        <div class="row bg-white m-1 p-2 rounded shadow"> 
+            <div class="col-md-6 pt-5">
+                <div class="text-center">
+                    <h4>Our Locations</h4>
+                    <br>
+                </div> 
+                <div class="card text-center px-5 border-0">   
+                    <iframe style="height: 350px;" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14767.262289338461!2d70.79414485000001!3d22.284975!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1424308883981"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6 py-5"> 
+                <div class="text-center"> 
+                    <h4>Contact Us</h4> 
+                    <br>
+                </div> 
+                    <form class="row p-3 needs-validation" action="{% url 'freq_contact_conn' %}" method="POST" novalidate>
+                        {% csrf_token %}
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" name="f_name" placeholder="Name" minlength="2" maxlength="30" required>
+                                <div class="invalid-feedback">
+                                    <strong>Enter Name.</strong>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="tel" class="form-control" name="f_mobile" placeholder="Mobile No" maxlength="10" pattern="[6789][0-9]{9}" required>
+                                <div class="invalid-feedback">
+                                    <strong>Enter 10-digit mobile no.</strong>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="email" class="form-control" name="f_email" placeholder="Email">
+                            </div> 
+                            <div class="col-12">
+                              <textarea class="form-control" placeholder="Leave a message here" name="f_message" rows="4" minlength="4" maxlength="200" required></textarea>
+                                <div class="invalid-feedback">
+                                    <strong>Write a message to company</strong>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3 text-center">
+                                <br>
+                                <button class="btn form-btn px-5" type="submit"> Send </button>
+                            </div>
+                        </form> 
+            </div>
+        </div>  
+    </div>
+    <!-- End Contact Info -->
+</div>
+
+ 
+
+{% endblock %}

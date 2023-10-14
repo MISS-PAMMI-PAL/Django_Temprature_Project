@@ -1,0 +1,174 @@
+{% extends 'base_welcome.html' %}
+{% block base_welcome_content %}
+{% load static %}
+
+<div class="container-fluid py-3">
+    <div class="card  p-2 mb-3">
+        <div class="card-body ">
+            <strong class="text-success">Device view data</strong>
+        </div>
+    </div>
+
+    <div class="card">
+        <br>
+        <div class="px-3">
+
+            <!-- Search Start -->
+            <form >
+                <div class="row my-3 justify-content-center"> 
+                    <div class="col-md-1"></div>
+                    <div class="col-8 col-md-7"><input class="form-control me-2" name="q1" value="{{ search_q }}" type="search" placeholder="Search_by_device_id" aria-label="Search"></div>
+                    <div class="col-2 col-md-2"><button class="btn btn-outline-success" type="submit">Search</button></div>
+                </div>
+            </form>
+            <!-- End Search -->
+
+            <!-- Graph -->
+            <div class="text-primary pt-3 text-center">
+                <h6><strong>Device id [ {{ e_user.id }} ]</strong></h6>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-2 col-xl-3"></div>
+                <div class="col-12 col-md-8 col-xl-6">
+                    <canvas id="canvas_chart_id" data-url="{% url 'data_fatch_ajax_conn' %}"></canvas>
+                </div>
+                <div class="col-12 col-md-2 col-xl-3"></div>
+            </div>
+            <!-- End Graph --> 
+        </div>
+    <br>
+    <br>
+    </div>
+
+
+    <script>
+        //import { Chart } from 'chart.js' ;
+        //import Chart from 'chart.js/auto';
+        //import  'chartjs-plugin-zoom';
+
+        // require(['path/to/chartjs/dist/Chart.min.js'], function(Chart){
+        //     var myChart = new Chart(ctx, {...});
+        // });
+
+        // create initial empty chart
+        var ctx_live = document.getElementById("canvas_chart_id");
+        var myChart = new Chart(ctx_live, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                data: [],
+                borderWidth: 1,
+                borderColor:'#00c0ef',
+                label: 'liveCount',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                // title: {
+                //     display: true,
+                //     text: "Chart.js - Dynamically Update Chart Via Ajax Requests",
+                // },
+                legend: {
+                    display: false
+                },
+                xAxes: [{
+                        type: 'time',
+                        distribution: 'linear',
+                    }],
+                tooltips: {
+                    backgroundColor: 'black',
+                    displayColors: false,
+                    bodyFontSize: 14,
+                    callbacks: {
+                    label: function(tooltipItems, data) { 
+                        return tooltipItems.yLabel + '°C';
+                    }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'timeseries',
+                    },
+                    yAxes: [{
+                        ticks: {
+                        beginAtZero: true,
+                        }
+                    }]
+                }
+            }
+        });
+ 
+        // logic to get new data
+        var getData = function() {
+            var canvasChartId = $("#canvas_chart_id"); 
+            $.ajax({
+                url: canvasChartId.data("url"), 
+                success: function(data) {
+                // process your data to pull out what you plan to use to update the chart
+                // e.g. new label and a new data point
+                
+                // add new label and data point to chart's underlying data structures
+                myChart.data.labels = data.labels;
+                myChart.data.datasets[0].data = data.values;
+                
+                // re-render the chart
+                myChart.update();
+                }
+            }); 
+        };
+ 
+        getData()
+        setInterval(getData, 60000); // get new data every 3 seconds
+        
+        
+         
+        
+
+        // new
+        // $(function () {
+        //   var $populationChart = $("#device-data-chart"); 
+        //   $.ajax({
+        //     url: $populationChart.data("url"), 
+        //     success: function (data) { 
+        //       var ctx = $populationChart[0].getContext("2d");
+        //       new Chart(ctx, {
+        //         type: 'line',
+        //         data: {
+        //           labels: data.labels,
+                  
+        //           datasets: [{
+        //             label: 'Temperature Data',
+        //             backgroundColor: 'blue',
+        //             fill: false,
+        //             data: data.data
+        //           }]          
+        //         },
+        //         options: {
+        //             responsive: true,
+        //             legend: {
+        //                 position: 'top',
+        //             },
+        //             xAxes: [{
+        //                     type: 'time',
+        //                     distribution: 'linear',
+        //                 }],
+        //             title: {
+        //                 display: true,
+        //                 text: 'Population Bar Chart'
+        //             }
+        //         }
+        //       });
+    
+        //     }
+        //   });
+    
+        // });
+    
+      </script>
+    
+</div>
+
+{% endblock %}

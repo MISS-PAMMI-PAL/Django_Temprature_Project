@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=6.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'css_file/page_style.css' %}">
+
+        <link rel="icon" href="{% static 'logo/logo.png' %}" />
+        <title> Prabhat </title> 
+        <style>
+            body {
+                margin:0;
+                padding: 0;
+                height: 100%;
+                text-decoration: none !important;
+                list-style: none;
+                /*text-decoration: none;*/
+                background-color: whitesmoke;
+                box-sizing: border-box;
+                font-family: "Roboto", sans-serif;
+            }
+            
+            .wrapper{
+                margin:0;
+                padding: 0;
+                padding-top: 56px;
+            }
+
+            .home-text-hover{
+                color:white;
+                border-radius: 15%;
+            }
+            .home-text-hover:hover {
+                color:blue;
+                background-color: yellow;
+                border-radius: 15%;
+            }
+
+            .card{
+                z-index: 7;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar shadow fixed-top navbar-expand-sm bg-body-tertiary m-0 p-0" style="background: linear-gradient(10deg, #0A58CA, #9EC5FE); ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                <img class="m-0 p-0"  src="{% static 'banner/icon-5.png' %}" alt="Railway" style="height: 56px; width: 100%;">
+                </a>
+               
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item   ">
+                        <a class="home-text-hover nav-link  " aria-current="page" href="{% url 'home' %}" ><strong>Home</strong></a>
+                    </li>
+                </ul>
+
+                <!-- Nav for large screen  -->
+                <div class="d-inline-flex align-bottom" id="">
+                    <ul class="navbar-nav ms-auto mt-2 d-inline-flex">
+                        {% comment %} <li class="nav-item me-2">
+                            <a class="btn nav-link color-primary outline-success" href="#"><strong>Login</strong></a>
+                        </li>  {% endcomment %}
+                        
+                        <li class="me-0 me-md-2"> 
+                            <a class="btn btn-success"  href="{% url 'login' %}" role="button"><strong>Login</strong></a>
+                         
+                            <a class="btn btn-primary" href="{% url 'data_view' %}" role="button"><strong>View Data</strong></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="wrapper"> 
+            <div class="content-body" style="min-height: calc(100vh - 110px);">
+                {% block base_welcome_content %}
+                {% endblock %}
+            </div>
+        </div>
+
+        
+        <div class="footer">
+            <div id="Contact">{% include 'footer.html' %}</div>
+        </div>
+
+        <script type="text/javascript" src="{% static 'js_file/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js_file/page_style.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js_file/my_script.js' %}"></script>
+    </body>
+</html>

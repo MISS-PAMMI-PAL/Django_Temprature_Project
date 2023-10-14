@@ -1,0 +1,47 @@
+{% extends 'base_welcome.html' %}
+{% block base_welcome_content %}
+{% load static %}
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-4"></div>
+        <div class="col-12 col-md-4">
+            <div class="card text-dark mb-3">
+                <h5 class="card-header text-primary py-3">Enter OTP</h5>
+                    <div class="card-body text-center">
+
+                    {% include 'messages.html' %}
+                    <form class="needs-validation" action="{% url 'reg_otp_decision_conn' %}" method="POST" novalidate>
+                        {% csrf_token %}
+                        <br>
+                        <div>
+                            <h6>OTP Send on <strong>{{ request.session.r_username }}</strong></h6>
+                        </div>
+                        <br>
+                        <div class="col-12 px-5">
+                            <label for="one_otp" class="form-label pt-2">Enter OTP</label>
+                            <input type="text" class="form-control text-center" id="one_otp" name="enter_otp"  placeholder="Enter your otp" minlength="4" maxlength="8" autocomplete="false" required>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div>
+                            <h6 class="text-muted">OTP valid for 5 minutes</h6>
+                        </div>
+                        <br>
+                        <div class="d-flex justify-content-around">
+                            <a href="{% url 'welcome_dashboard_conn' %}" type="button" class="btn btn-outline-secondary px-5">Cancel</a>
+                            <button type="submit" class="btn btn-success px-5" >Done</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4"></div>
+    </div> 
+</div> 
+
+{% endblock %}

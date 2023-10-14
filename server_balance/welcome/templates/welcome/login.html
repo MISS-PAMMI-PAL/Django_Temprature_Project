@@ -1,0 +1,59 @@
+{% extends 'base_welcome.html' %}
+{% block base_welcome_content %}
+{% load static %}
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-4"></div>
+        <div class="col-12 col-md-4">
+            <div class="card mb-3">
+                <div class="card-header text-white-50 pt-3" style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #18a185;">
+                <strong>Login Form</strong></div> 
+                {% include 'messages.html' %}
+                <div class="card-body">
+                    <form class="needs-validation" method="POST" novalidate>
+                        {% csrf_token %} 
+                        <div class="col-12">
+                            <label for="r_phone" class="form-label pt-2">Phone no</label>
+                            <input type="tel" class="form-control" id="r_phone" name="my_id"  placeholder="Enter Name" minlength="10" maxlength="10" pattern="[6789][0-9]{9}" autocomplete="false" required>
+                            <div class="invalid-feedback">
+                                Please enter correct 10 digit mobile no.
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="r_pass1" class="form-label pt-2">Enter Password</label>
+                            <input type="text" class="form-control" id="r_pass1" name="pass"  placeholder="Enter Password" minlength="4" maxlength="15" autocomplete="false" required>
+                            <div class="invalid-feedback">
+                                Your password length between 4 or 15.
+                            </div>
+                        </div> 
+                        <div class="form-check mt-2">
+                              <input class="form-check-input " type="checkbox" value="" id="reg_invalidCheck" required>
+                              <label class="form-check-label" for="reg_invalidCheck">
+                                  <small> 
+                                    Agree to terms and conditions       
+                                    <a href="{% url 'forgot_pwd_conn' %}" class="ms-auto text-warning text-decoration-none">ForgotPwd </a>
+                                    <a href="{% url 'registration_conn' %}" class="ms-auto text-success text-decoration-none"> Sign-In</a>
+                                  </small> 
+                              </label>
+                              <div class="invalid-feedback">
+                                You must agree before submitting.
+                              </div>
+                        </div>
+ 
+                        <div class="modal-footer mt-5 justify-content-around">
+                            <a href="{% url 'welcome_dashboard_conn' %}" type="button" class="btn btn-outline-secondary px-4 px-md-5">Close</a>
+                            <button type="submit" class="btn px-4 px-md-5 form-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4"></div>
+    </div>
+</div>
+
+ 
+
+{% endblock %}

@@ -1,0 +1,109 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"); */
+
+:root {
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 0px;  /*56px*/
+  --topPageHeightWothoutNavbar: calc(100vh - 103px);
+  --bodyBackgroundColor: rgb(245, 245, 245);
+}
+
+*{
+  margin:0;
+  padding: 0;
+}
+
+html, body {
+  margin:0;
+  padding: 0;
+  /* height: 100%; */
+  text-decoration: none !important;
+  list-style: none;
+  text-decoration: none;
+  background-color: var(--bodyBackgroundColor); 
+  box-sizing: border-box;
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "Inter", sans-serif;
+}
+
+
+main {
+  background-color: var(--bodyBackgroundColor); 
+  margin-top: var(--topNavbarHeight); 
+  min-height: var(--topPageHeightWothoutNavbar);
+}
+.content_body_without_sidebar{
+  /* background-color: var(--bodyBackgroundColor);  */
+  background-color: white;
+  margin-top: var(--topNavbarHeight); 
+  min-height: var(--topPageHeightWothoutNavbar);
+}
+.sidebar-nav {
+  width: var(--offcanvas-width);   
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+}
+.sidebar-link .right-icon {
+  display: inline-flex;
+}
+.sidebar-link[aria-expanded="true"] .right-icon {
+  transform: rotate(180deg);
+}
+/* .footer{
+  height: calc(100% - var(--topNavbarHeight)); 
+} */
+
+
+.card{
+  z-index: 10;
+  border-radius: 10px; 
+}
+
+/* #card-header{
+  border-start-end-radius: 10px;
+} */
+
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+  main {
+    margin-top: var(--topNavbarHeight);
+    margin-left: var(--offcanvas-width); 
+    min-height: var(--topPageHeightWothoutNavbar);
+  }
+  /* this is to remove the backdrop */
+  .offcanvas-backdrop::before {
+    display: none;
+  }
+  .sidebar-nav {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible !important;
+    height: calc(100% - var(--topNavbarHeight)  ); 
+    top: var(--topNavbarHeight); 
+  }
+}
+
+.form-btn{
+  background-color: #18a185;
+  color: white;
+}
+.form-btn:hover{
+  background-color: #117864;
+  color: white;
+}
+
+/* .fun-factor-area{
+  background-image: url(../logo/logo.png);
+} */
+/* 
+  width
+  -webkit-scrollbar { width: 10px; }
+  Track
+  -webkit-scrollbar-track { background: #f1f1f1; }
+  Handle
+  -webkit-scrollbar-thumb { background: #888; }
+  Handle on hover
+  -webkit-scrollbar-thumb:hover {background: #555;} */

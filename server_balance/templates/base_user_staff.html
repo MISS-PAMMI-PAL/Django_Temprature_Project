@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css_file/bootstrap.min.css' %}" /> 
+    <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css_file/dataTables.bootstrap5.min.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'css_file/material-icons.css' %}">    Link with material-icons.css to folder(google-material-fonts) using dot-->
+    <link rel="stylesheet" href="{% static 'css_file/style.css' %}" />
+    <title>Smart Device</title>
+    </head>
+    <body>
+    <!-- top navigation bar -->
+    <nav class="navbar navbar-expand  navbar-dark fixed-top shadow" style="background: linear-gradient(45deg, #0A58CA, #9EC5FE);">
+        <div class="container-fluid">
+            <div class="d-block d-lg-none" id="">
+                <a role="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample" style="color: white; margin: 0px; padding: 2px; font-size: 24px;  ">
+                    <span class="bi bi-list" data-bs-target="#sidebar"></span>
+                </a>
+            </div>
+            <a class="navbar-brand me-auto ms-lg-0 ms-3 ms-lg-5 text-uppercase fw-bold" href="{% url 'admin_dashboard_conn' %}" >Smart</a>
+            
+            <div class="navbar-nav">
+                <div class="d-flex">
+                    <li class="nav-item me-3">
+
+                        <!-- Nav for large screen  -->
+                        <div class="d-none d-md-inline-flex align-bottom" id="">
+                            <a href="{% url 'admin_notification_conn' %}" type="button" class="btn btn-success">
+                            <strong>Notification &nbsp;</strong> 
+                            <span class="badge bg-warning text-primary">4</span>
+                            </a>
+                        </div>
+                        <!-- Nav for small screen  -->
+                        <div class="d-block d-md-none" id="">
+                            <a href="{% url 'admin_notification_conn' %}" type="button" class="btn btn-primary position-relative">
+                                <i class="bi bi-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                1
+                                <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
+                        </div>
+
+                    </li>  
+                    <div class="nav-item dropdown">
+                        <a class="btn btn-primary dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <strong>User</strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul> 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- end top navigation bar -->
+
+    <!-- offcanvas -->
+    <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar" style="background: linear-gradient(45deg, #0A58CA, #0A58CA);"> 
+        <div class="offcanvas-body p-0">
+        <nav class="navbar-dark text-white">
+            
+            <ul class="navbar-nav">
+            <li>
+                <div class="text-center m-4"> <h5>Smart Oven</h5> </div>
+                <hr class="dropdown-divider bg-light" />
+                <div class="px-3"><small>User : Prabhat Kumar</small></div>
+                <div class="px-3"><small>Device-Id : GZB012345</small></div>
+                <div class="px-3"><small>Address : Ghaziabad, Delhi</small></div>
+                <div class="px-3"><small>Status : Normal</small></div>
+            </li>
+            <li><hr class="dropdown-divider bg-light" /></li>
+            <li>
+                <a href="{% url 'admin_dashboard_conn' %}" class="nav-link px-3"><span class="me-2"><i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+                </a>
+            </li> 
+            <li>
+                <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#profile">
+                    <span class="me-2"><i class="bi bi-person-fill"></i></span>
+                    <span>User</span>
+                    <span class="ms-auto"> <span class="right-icon"><i class="bi bi-chevron-down"></i></span></span>
+                </a>
+                <div class="collapse" id="profile">
+                    <ul class="navbar-nav ps-3">
+                        <li>
+                            <a href="{% url 'admin_profile_conn' %}" class="nav-link px-3"><span class="me-2"><i class="bi bi-person-vcard"></i></span>
+                                <span>User Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'admin_add_user_conn' %}" class="nav-link px-3"><span class="me-2"><i class="bi bi-person-add"></i></span>
+                                <span>Add User</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'admin_change_pwd_conn' %}" class="nav-link px-3"><span class="me-2"><i class="bi bi-border-style"></i></span>
+                                <span>Change Pass</span>
+                            </a>
+                        </li> 
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#device">
+                <span class="me-2"><i class="bi bi-phone-vibrate-fill"></i></span>
+                <span>Device</span>
+                <span class="ms-auto"> <span class="right-icon"><i class="bi bi-chevron-down"></i></span> 
+                </a>
+                <div class="collapse" id="device">
+                    <ul class="navbar-nav ps-3">
+                        <li>
+                            <a href="#" class="nav-link px-3"><span class="me-2"><i class="bi bi-clipboard-data"></i></span>
+                                <span>View Data</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-3"><span class="me-2"><i class="bi bi-cpu"></i></span>
+                                <span>Device Info</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="nav-link px-3"><span class="me-2"><i class="bi bi-credit-card"></i>
+                <span>Account</span>
+                </a>
+            </li> 
+            <li>
+                <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#support-tab">
+                    <span class="me-2"><i class="bi bi-envelope-fill"></i></span>
+                    <span>Support</span>
+                    <span class="ms-auto"> <span class="right-icon"><i class="bi bi-chevron-down"></i></span></span>
+                </a>
+                <div class="collapse" id="support-tab">
+                    <ul class="navbar-nav ps-3">
+                        <li>
+                            <a href="#" class="nav-link px-3"><span class="me-2"><i class="bi bi-chat-right-dots"></i></span>
+                                <span>Message</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-3"><span class="me-2"><i class="bi bi-info-circle"></i></span>
+                                <span>Get-in-touch</span>
+                            </a>
+                        </li> 
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="nav-link px-3"><span class="me-2"><i class="bi bi-box-arrow-in-right"></i>
+                <span>Logout</span>
+                </a>
+            </li>
+            <li><hr class="dropdown-divider bg-light mt-5" /></li>
+            <div class="text-center text-white-50 mt-4">
+                <h6 >I developed</h6>
+                <h6 >Inteligent Device</h6>
+                <h6 >for You</h6>
+            </div>
+            <!-- <br>
+            <h6 class="text-center text-muted bg-white py-2 mb-0"><strong>JEEVAN</strong></h6>
+            <br> -->
+        </nav>
+        </div>
+    </div>
+    <!-- offcanvas -->
+
+    <main>
+        <div class="m-0, p-0">
+            {% block base_user_staff_content %}
+            {% endblock %}
+        </div>
+    </main> 
+
+    <div class="footer">
+        <div id="Contact">{% include 'footer.html' %}</div>
+    </div>
+    
+    <script src="{% static 'js_file/bootstrap.bundle.min.js' %}"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script> -->
+    <script src="{% static 'js_file/jquery-3.5.1.js' %}"></script>
+    <script src="{% static 'js_file/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js_file/dataTables.bootstrap5.min.js' %}"></script>
+    <script src="{% static 'js_file/script.js' %}"></script>
+
+    <!-- <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="./js/jquery-3.5.1.js"></script>
+    <script src="./js/jquery.dataTables.min.js"></script>
+    <script src="./js/dataTables.bootstrap5.min.js"></script>
+    <script src="./js/script.js"></script> -->
+    </body>
+</html>
+                
